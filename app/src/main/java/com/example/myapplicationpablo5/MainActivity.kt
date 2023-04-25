@@ -8,8 +8,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -18,8 +23,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -58,30 +65,60 @@ fun PlanoDefundo () {
 @Composable
 fun Rodape() {
     Column(
-        verticalArrangement = Arrangement.Bottom
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.Start
     ) {
-        Contato()
-        Contato()
-        Contato()
+        Contato(
+            painter = painterResource(id = R.drawable.iconecontato),
+            text = " (11)991741563"
+        )
+        Contato(
+            painter = painterResource(id = R.drawable.iconeemail),
+           text  = " pablocostap15117@gmail.com"
+
+        )
+        Contato(
+            painter = painterResource(id = R.drawable.iconecasa),
+            text = " Vila Mariana"
+        )
     }
 }
+
 @Composable
-fun Contato() {
-    Row() {
-        Image(painter = painterResource(id = R.drawable.iconecontato) ,
-            contentDescription = null,
-            modifier = Modifier
-                .size(20.dp)
-                .clip(CircleShape)
+fun Contato(painter: Painter, text :String) {
+
+    Divider(
+        color  = Color.Black,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(0.5.dp)
+    )
+
+    Row(
+        modifier = Modifier
+            .padding(top = 10.dp, start = 30.dp, bottom = 10.dp)
+    ) {
+        Image(painter = painter,
+              contentDescription =null,
+              modifier = Modifier
+                  .size(50.dp)
+                  .clip(CircleShape)
         )
         Text(
-            text = "(11) 99174-1563",
+          text = text,
             fontSize = 20.sp,
-            color = Color.LightGray
+            color = Color.White,
+            modifier = Modifier
+                .padding(start = 30.dp)
         )
+
+
     }
 
-
+}
 
 
 @Composable
@@ -101,7 +138,7 @@ fun Cabecalho() {
         Text(
             text = "Pablo Costa",
             fontSize = 30.sp,
-            color = Color.DarkGray,
+            color = Color.Black,
             fontWeight = FontWeight.Bold
         )
         Text(
@@ -111,6 +148,9 @@ fun Cabecalho() {
         )
     }
 }
+
+
+
 
 
 
